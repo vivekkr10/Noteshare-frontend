@@ -1,0 +1,96 @@
+import React, { useState } from 'react';
+import { NavLink, useNavigate } from 'react-router-dom';
+import axios from 'axios';
+import '../css/LoginPage.css';
+
+const LoginPage = () => {
+  const [form, setForm] = useState({
+    email: '',
+    password: '',
+  });
+  const [showPassword, setShowPassword] = useState(false);
+  const [message, setMessage] = useState('');
+  const navigate = useNavigate();
+
+  const togglePasswordVisibility = () => {
+    setShowPassword(prev => !prev);
+  };
+
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm((prevForm) => ({
+      ...prevForm,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+
+    try {
+      const response = await axios.post('https://noteshare-backend-ujbv.onrender.com/api/user/login', {
+        email: form.email,
+        password: form.password,
+      });
+
+      // ✅ Save user info locally
+      localStorage.setItem("userInfo", JSON.stringify({
+        id: response.data.user.id,
+        username: response.data.user.username,
+        email: response.data.user.email,
+      }));
+
+      // ✅ Save token if needed
+      localStorage.setItem("userToken", response.data.token);
+
+      navigate("/userHomePage");
+    } catch (err) {
+      console.error("Login failed", err);
+      setMessage("Invalid email or password.");
+    }
+  };
+
+  return (
+    <div>
+      <form id="login-form" onSubmit={handleSubmit}>
+        <h1>Login</h1>
+
+        <div id="login-email">
+          <label htmlFor="email">Email</label>
+          <input
+            type="email"
+            name="email"
+            id="email"
+            value={form.email}
+            onChange={handleChange}
+            required
+          />
+        </div>
+
+        <div id="login-password">
+          <label htmlFor="password">Password</label>
+          <input
+            type={showPassword ? 'text' : 'password'}
+            name="password"
+            id="password"
+            value={form.password}
+            onChange={handleChange}
+            required
+          />
+          <i
+            id="eye"
+            className={showPassword ? 'bx bx-hide' : 'bx bx-show'}
+            onClick={togglePasswordVisibility}
+          />
+        </div>
+
+        <button id="loginn" type="submit">Login</button>
+        <p>Don't have an account? <NavLink to="/login">Register here</NavLink></p>
+
+        {message && <p id="login-message">{message}</p>}
+      </form>
+    </div>
+  );
+};
+
+export default LoginPage;

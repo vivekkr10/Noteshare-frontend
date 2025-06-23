@@ -1,0 +1,768 @@
+#nav-bar {
+  background-color: white;
+  padding: 10px 30px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+#nav-bar-wrap {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+#logo {
+  height: 40px;
+}
+
+#menu-icon {
+  display: none;
+  cursor: pointer;
+}
+
+#line {
+  display: block;
+  width: 25px;
+  height: 3px;
+  background: #333;
+  margin: 5px;
+  transition: 0.3s ease;
+}
+
+#rotate1 {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+#rotate2 {
+  transform: rotate(-45deg) translate(5px, -5px);
+}
+#hide {
+  opacity: 0;
+}
+
+#nav-links {
+  display: flex;
+  gap: 15px;
+}
+
+#nav-btn {
+  background: none;
+  border: none;
+  font-weight: 500;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 8px 10px;
+  transition: 0.2s ease;text-decoration: none;
+  color: #333;
+}
+
+#nav-btn:hover {
+  color: #0077ff;
+}
+
+#user-section {
+  position: relative;
+}
+
+#user-avatar {
+  height: 36px;
+  width: 36px;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid #0077ff;
+}
+
+#dropdown {
+  position: absolute;
+  right: 0;
+  top: 50px;
+  background: white;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  border-radius: 6px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  min-width: 160px;
+}
+
+#dropdown span {
+  padding: 12px 16px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background 0.2s;
+}
+
+#dropdown span:hover {
+  background-color: #f2f2f2;
+}
+
+#avatar-menu-mobile {
+  display: none;
+}
+
+
+@media screen and (max-width: 768px) {
+  /* Hide normal nav links + menu icon */
+  #nav-links,
+  #menu-icon,
+  #user-section {
+    display: none !important;
+  }
+
+  #avatar-menu-mobile {
+    display: block;
+    position: relative;
+    cursor: pointer;
+  }
+
+  #avatar-menu-mobile img {
+    height: 36px;
+    width: 36px;
+    border-radius: 50%;
+    border: 2px solid #0077ff;
+  }
+
+  #avatar-dropdown-mobile {
+    position: absolute;
+    top: 50px;
+    right: 0;
+    background: white;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    min-width: 180px;
+    z-index: 9999;
+  }
+
+  #avatar-dropdown-mobile a,
+  #avatar-dropdown-mobile button {
+    padding: 12px 16px;
+    font-size: 14px;
+    border: none;
+    background: none;
+    text-align: left;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    color: #333;
+    text-decoration: none;
+  }
+
+  #avatar-dropdown-mobile a:hover,
+  #avatar-dropdown-mobile button:hover {
+    background-color: #f2f2f2;
+  }
+}
+
+
+/* -----------------------------------------------Welcome Section --------------------------------------- */
+#welcome{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+}
+
+#welcome h1{
+  font-size: 35px;
+}
+
+#welcome p{
+  font-size: 18px;
+}
+
+/* -------------------- Notes Modal Fullscreen -------------------- */
+
+#myNotes {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: rgba(0, 0, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 40px;
+}
+
+#myNotes-container {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 1200px;
+  max-height: 85vh;
+  padding: 20px;
+  position: relative;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+}
+
+#myNotes-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: red;
+  color: #fff;
+  border: none;
+  border-radius: 50%;
+  width: 32px;
+  height: 32px;
+  font-size: 18px;
+  cursor: pointer;
+}
+
+#notes-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 20px;
+  justify-content: center; /* center the grid */
+  max-height: 70vh;
+  overflow-y: auto;
+  padding: 10px;
+  width: 100%;
+  max-width: 1000px;  /* ✅ Controls the max width of grid area */
+  margin: 0 auto;      /* ✅ Keeps it centered */
+}
+
+.note-card {
+  background-color: #ffffff;
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  padding: 1rem;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  transition: transform 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  width: 100%;
+  max-width: 250px;
+}
+
+.note-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+}
+
+.note-card img {
+  width: 100%;
+  height: 100px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 0.5rem;
+}
+
+.note-card h3 {
+  font-size: 1rem;
+  margin: 0.5rem 0 0.25rem;
+  color: #2e2e2e;
+  text-align: center;
+}
+
+.note-card p {
+  font-size: 0.85rem;
+  color: #555;
+  margin: 2px 0;
+  text-align: center;
+}
+
+@media (max-width: 1024px) {
+  #myNotes-container {
+    background: #fff;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 960px;
+    max-height: 90vh;
+    padding: 20px;
+    position: relative;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #myNotes-btn {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background: #e74c3c;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 32px;
+    height: 32px;
+    font-size: 20px;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* ✅ 3 cards per row on tablet/laptop view */
+  #notes-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 16px;
+    overflow-y: auto;
+    max-height: 75vh;
+    padding-right: 6px;
+  }
+
+  .note-card {
+    background-color: #fff;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    padding: 0.8rem;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .note-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.08);
+  }
+
+  .note-card img {
+    width: 100%;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-bottom: 0.5rem;
+  }
+
+  .note-card h4 {
+    font-size: 1rem;
+    margin: 0.3rem 0 0.2rem;
+    color: #222;
+  }
+
+  .note-card p {
+    font-size: 0.85rem;
+    color: #555;
+    margin: 2px 0;
+  }
+}
+
+
+/* Responsive */
+@media (max-width: 768px) {
+  #myNotes-container {
+    background: #fff;
+    border-radius: 12px;
+    width: 95%;
+    max-width: 100%;
+    max-height: 90vh;
+    padding: 15px;
+    position: relative;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+
+  #myNotes-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background: red;
+    color: #fff;
+    border: none;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    font-size: 18px;
+    cursor: pointer;
+    line-height: 1;
+  }
+
+  /* ✅ 2 smaller cards per row */
+  #notes-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    overflow-y: auto;
+    max-height: 75vh;
+    padding-right: 5px;
+  }
+
+  .note-card {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 0.6rem;
+    max-width: 160px;
+    margin: auto;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+  }
+
+  .note-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 14px rgba(0, 0, 0, 0.08);
+  }
+
+  .note-card img {
+    width: 100%;
+    max-height: 90px;
+    object-fit: cover;
+    border-radius: 6px;
+    margin-bottom: 0.4rem;
+  }
+
+  .note-card h3 {
+    font-size: 0.85rem;
+    margin: 0.3rem 0 0.2rem;
+    color: #2e2e2e;
+  }
+
+  .note-card p {
+    font-size: 0.75rem;
+    color: #555;
+    margin: 2px 0;
+  }
+}
+
+/* ------------------ Count Upload Section -------------------- */
+
+#count-upload {
+  background-color: #ffffff;
+  padding: 60px 20px;
+  text-align: center;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.05);
+  border-radius: 12px;
+  margin: 50px auto;
+  max-width: 1100px;
+}
+
+#count {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  margin-bottom: 40px;
+}
+
+#count-notes {
+  flex: 1;
+  min-width: 200px;
+  margin: 15px;
+  background-color: #f8fff6;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #E8ECF1;
+  transition: transform 0.3s ease;
+}
+
+#count-notes:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 10px rgba(0, 0, 0, 0.05);
+}
+
+#count-num {
+  font-size: 2.5rem;
+  color: #486ac9;
+  font-weight: bold;
+}
+
+#notes-uploaded,
+#notes-downloads,
+#notes-views {
+  color: #2E2E2E;
+  font-size: 1.1rem;
+  margin-top: 8px;
+}
+
+/* Action Buttons */
+#count-buttons {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 20px;
+}
+
+#count-buttons #c-btn {
+  padding: 12px 28px;
+  border: none;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #A8DF8E;
+  color: #2E2E2E;
+  border-radius: 8px;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+#count-buttons #c-btn:hover {
+  background-color: #3B82F6;
+  color: #fff;
+  transform: translateY(-2px);
+  box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  #count {
+    flex-direction: row;
+    align-items: center;
+    gap: 16px;
+  }
+
+  #count-notes {
+    width: 90%;
+    max-width: 100%;
+  }
+
+  #count-buttons {
+    flex-direction: row;
+    align-items: center;
+    gap: 12px;
+  }
+
+  #count-buttons #c-btn {
+    /* width: 90%; */
+    max-width: 300px;
+    font-size: 1rem;
+  }
+
+  #count-upload {
+    padding: 40px 15px;
+    margin: 40px 10px;
+  }
+
+  #count-num {
+    font-size: 2rem;
+  }
+}
+
+/* === Latest & Popular Notes Section === */
+#latest-popular {
+  background-color: #f8f9f4;
+  padding: 3rem 1rem;
+  display: flex;
+  justify-content: center;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+.combined-note-card {
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
+  padding: 2rem;
+  max-width: 900px;
+  width: 100%;
+  text-align: center;
+}
+
+.combined-note-card h2 {
+  color: #1e1e1e;
+  font-size: 1.7rem;
+  margin-bottom: 2rem;
+}
+
+.note-split {
+  display: flex;
+  justify-content: space-between;
+  gap: 2rem;
+  flex-wrap: wrap;
+}
+
+.note-section {
+  flex: 1;
+  min-width: 280px;
+  max-width: 400px;
+  border: 1px solid #e0e0e0;
+  padding: 1rem;
+  border-radius: 10px;
+  background-color: #f9fafb;
+  transition: transform 0.3s ease;
+}
+
+.note-section:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
+
+.note-section h3 {
+  color: #333;
+  margin-bottom: 1rem;
+}
+
+.note-section h4 {
+  font-size: 1rem;
+  margin-top: 1rem;
+  color: #2e2e2e;
+}
+
+.note-section p {
+  color: #555;
+  font-size: 0.95rem;
+}
+
+.note-image {
+  width: 100%;
+  height: 180px;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+}
+
+/* Responsive */
+@media screen and (max-width: 768px) {
+  .note-split {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .note-section {
+    max-width: 100%;
+  }
+}
+
+
+/* ------------------ Modal Overlay ------------------ */
+#notes-modal-overlay {
+  position: fixed;
+  top: 0; left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.7);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 9999;
+  padding: 20px;
+}
+
+/* ------------------ Modal Container ------------------ */
+#notes-modal-container {
+  background: #fff;
+  border-radius: 12px;
+  width: 90%;
+  max-width: 800px;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* ------------------ Close Button ------------------ */
+#close-modal-btn {
+  position: absolute;
+  padding-bottom: 36px;
+  top: 12px;
+  right: 12px;
+  background-color: crimson;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 35px;
+  height: 30px;
+  font-size: 30px;
+  cursor: pointer;
+  line-height: 1;
+}
+
+/* ------------------ Heading ------------------ */
+#notes-modal-container h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+  font-size: 1.5rem;
+}
+
+/* ------------------ Layout ------------------ */
+#notes-modal-container #upload-layout {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+/* ------------------ Left: Image Preview ------------------ */
+#upload-preview {
+  flex: 1;
+  text-align: center;
+}
+
+#upload-preview img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+#upload-image-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: #007bff;
+  color: white;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+#upload-image-btn:hover {
+  background-color: #0056b3;
+}
+
+/* ------------------ Right: Form ------------------ */
+#upload-form {
+  flex: 2;
+}
+
+#upload-btn {
+  display: inline-block;
+  padding: 10px 16px;
+  background-color: #28a745;
+  color: white;
+  font-weight: bold;
+  border-radius: 6px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  text-align: center;
+}
+
+#upload-btn:hover {
+  background-color: #218838;
+}
+
+
+#upload-form input[type="file"],
+#upload-form input[type="text"] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 14px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  font-size: 1rem;
+}
+
+#upload-form button[type="submit"] {
+  padding: 10px 18px;
+  background-color: #28a745;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+#upload-form button[type="submit"]:hover {
+  background-color: #218838;
+}
+
+/* ------------------ Responsive ------------------ */
+@media (max-width: 768px) {
+  #notes-modal-container .upload-layout {
+    flex-direction: column;
+  }
+}

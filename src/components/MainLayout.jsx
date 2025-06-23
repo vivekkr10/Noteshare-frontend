@@ -1,7 +1,6 @@
 // components/MainLayout.jsx
 import React, { useState } from 'react';
 import Navbar from './Navbar';
-const BASE_URL = process.env.REACT_APP_API_URL;
 
 const MainLayout = ({ children }) => {
   const [showUploadModal, setShowUploadModal] = useState(false);

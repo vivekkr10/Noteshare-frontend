@@ -1,10 +1,10 @@
 // components/MainLayout.jsx
-import React, { useState } from 'react';
+import { useState } from 'react';
 import Navbar from './Navbar';
 
 const MainLayout = ({ children }) => {
-  const [showUploadModal, setShowUploadModal] = useState(false);
-  const [showNotesModal, setShowNotesModal] = useState(false);
+  const [setShowUploadModal] = useState(false);
+  const [setShowNotesModal] = useState(false);
 
   return (
     <>

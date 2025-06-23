@@ -3,14 +3,14 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 
 const Navbar = ({ onUploadClick, onMyNotesClick }) => {
-  const [menuOpen, setMenuOpen] = useState(false);
+  // const [menuOpen, setMenuOpen] = useState(false);
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const navigate = useNavigate();
 
   const userInfo = JSON.parse(localStorage.getItem("userInfo")); // ✅ Get logged-in user info
   const userId = userInfo?.id;
 
-  const toggleMenu = () => setMenuOpen(!menuOpen);
+  // const toggleMenu = () => setMenuOpen(!menuOpen);  
   const toggleDropdown = () => setDropdownOpen(!dropdownOpen);
 
   const handleLogout = () => {
@@ -26,8 +26,8 @@ const Navbar = ({ onUploadClick, onMyNotesClick }) => {
           <NavLink to="/userHomePage">
             <img src="/images/logo.png" alt="NoteShare" id="logo" />
           </NavLink>
-
-          <div id={menuOpen ? 'nav-links-show' : 'nav-links'}>
+      
+          <div id="nav-links">
             <NavLink to="/userHomePage"><button id="nav-btn">Home</button></NavLink>
             <button id="nav-btn" onClick={onMyNotesClick}>My Notes</button>
             <button id="nav-btn" onClick={onUploadClick}>Upload</button>

@@ -11,6 +11,7 @@ const LoginPage = () => {
   });
   const [showPassword, setShowPassword] = useState(false);
   const [message, setMessage] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
@@ -27,6 +28,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true)
 
     try {
       const response = await axios.post(`${BASE_URL}/api/user/login`, {
@@ -48,6 +50,8 @@ const LoginPage = () => {
     } catch (err) {
       console.error("Login failed", err);
       setMessage("Invalid email or password.");
+    } finally {
+      setLoading(false); // hide spinner
     }
   };
 
@@ -85,7 +89,15 @@ const LoginPage = () => {
           />
         </div>
 
-        <button id="loginn" type="submit">Login</button>
+        <button id="loginn" type="submit" disabled={loading}>
+          {loading ? (
+        <>
+          <span className="loader"></span> Logging in...
+        </>
+          ) : (
+          "Login"
+          )}
+        </button>
         <p>Don't have an account? <NavLink to="/login">Register here</NavLink></p>
 
         {message && <p id="login-message">{message}</p>}

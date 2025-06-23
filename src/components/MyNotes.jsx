@@ -70,9 +70,9 @@ const UserNotes = () => {
     </div>
 
     <div class="footer-social">
-      <a href="https://twitter.com" target="_blank"><i class="bx bxl-twitter"></i></a>
-      <a href="https://instagram.com" target="_blank"><i class="bx bxl-instagram"></i></a>
-      <a href="https://linkedin.com" target="_blank"><i class="bx bxl-linkedin"></i></a>
+      <i class="bx bxl-twitter"></i>
+      <i class="bx bxl-instagram"></i>
+      <i class="bx bxl-linkedin"></i>
     </div>
   </div>
 

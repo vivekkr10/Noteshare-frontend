@@ -42,7 +42,7 @@ const SetUsername = () => {
 
       const res = await axios.post(`${BASE_URL}/set-username`, payload);
 
-      setMessage("🎉 Username set! Account created successfully.");
+      setMessage(res.data.message || "🎉 Username set! Account created successfully.");
       localStorage.removeItem("userInfo");
 
       setTimeout(() => navigate("/userHomePage"), 1500);

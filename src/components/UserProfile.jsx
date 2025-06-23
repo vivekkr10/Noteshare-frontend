@@ -12,7 +12,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`${BASE_URL}/user/${id}`);
+        const res = await axios.get(`${BASE_URL}/api/user/user/${id}`);
         setUser(res.data);
       } catch (err) {
         console.error(err);

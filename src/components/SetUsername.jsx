@@ -40,7 +40,7 @@ const SetUsername = () => {
         phone: userInfo.phone,
       };
 
-      const res = await axios.post(`${BASE_URL}/set-username`, payload);
+      const res = await axios.post(`${BASE_URL}/api/user/set-username`, payload);
 
       setMessage(res.data.message || "🎉 Username set! Account created successfully.");
       localStorage.removeItem("userInfo");

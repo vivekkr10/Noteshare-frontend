@@ -16,7 +16,7 @@ const Browse = () => {
     const fetchNotes = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`${BASE_URL}/notes?page=${currentPage}&limit=${limit}`);
+        const res = await axios.get(`${BASE_URL}/api/user/notes?page=${currentPage}&limit=${limit}`);
         setNotes(res.data.notes);
         setTotalPages(res.data.totalPages);
       } catch (err) {
@@ -35,7 +35,7 @@ const Browse = () => {
 
     if (viewedNotes[id]) {
       try {
-        const res = await axios.get(`${BASE_URL}/notes/${id}`);
+        const res = await axios.get(`${BASE_URL}/api/user/notes/${id}`);
         setSelectedNote(res.data);
         setShowModal(true);
       } catch (err) {
@@ -45,7 +45,7 @@ const Browse = () => {
     }
 
     try {
-      const res = await axios.get(`${BASE_URL}/${id}?userId=${userInfo?.id}`);
+      const res = await axios.get(`${BASE_URL}/api/user/${id}?userId=${userInfo?.id}`);
       setSelectedNote(res.data);
       setShowModal(true);
       viewedNotes[id] = true;
@@ -65,7 +65,7 @@ const Browse = () => {
   try {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-    const response = await axios.get(`${BASE_URL}/download/${note._id}?userId=${userInfo?.id}`, {
+    const response = await axios.get(`${BASE_URL}/api/user/download/${note._id}?userId=${userInfo?.id}`, {
       responseType: 'blob',
     });
 

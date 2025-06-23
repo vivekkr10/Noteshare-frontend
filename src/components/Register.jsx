@@ -28,7 +28,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`${BASE_URL}/register`, formData);
+      const res = await axios.post(`${BASE_URL}/api/user/register`, formData);
 
       // Save partial data to localStorage for use after OTP verification
       localStorage.setItem("userInfo", JSON.stringify(formData));

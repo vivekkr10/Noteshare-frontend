@@ -14,7 +14,7 @@ const UserNotes = () => {
         const userId = userInfo?.id;
         if (!userId) return;
 
-        const res = await axios.get(`${BASE_URL}/notes/user/${userId}`);
+        const res = await axios.get(`${BASE_URL}/api/user/notes/user/${userId}`);
         setNotes(res.data.notes);
         setTotals({
           totalViews: res.data.totalViews,

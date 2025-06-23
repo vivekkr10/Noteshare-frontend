@@ -40,7 +40,7 @@ const VerifyOTP = () => {
         otp
       };
 
-      const res = await axios.post(`${BASE_URL}/verify-otp`, payload);
+      const res = await axios.post(`${BASE_URL}/api/user/verify-otp`, payload);
       console.log("✅ OTP Verified:", res.data.message);
 
       setMessage("✅ OTP verified. Redirecting...");

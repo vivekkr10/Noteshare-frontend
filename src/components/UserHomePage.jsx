@@ -29,7 +29,7 @@ const UserHomePage = () => {
       const userId = userInfo?.id;
       if (!userId) return;
 
-      const res = await axios.get(`${BASE_URL}/home/${userId}`);
+      const res = await axios.get(`${BASE_URL}/api/user/home/${userId}`);
       setLatestNote(res.data.latest?.[0] || null);
       setPopularNote(res.data.popular?.[0] || null);
     } catch (err) {
@@ -43,7 +43,7 @@ const UserHomePage = () => {
       const userId = userInfo?.id;
       if (!userId) return;
 
-      const res = await axios.get(`${BASE_URL}/notes/stats/${userId}`);
+      const res = await axios.get(`${BASE_URL}/api/user/notes/stats/${userId}`);
       setNotesCount(res.data);
     } catch (err) {
       console.error("❌ Failed to fetch stats", err);
@@ -56,7 +56,7 @@ const UserHomePage = () => {
       const userId = userInfo?.id;
       if (!userId) return;
 
-      const res = await axios.get(`${BASE_URL}/notes/user/${userId}`);
+      const res = await axios.get(`${BASE_URL}/api/user/notes/user/${userId}`);
       setUserNotes(res.data.notes || []);
       setTimeout(() => setShowNotesModal(true), 0);
     } catch (err) {
@@ -89,7 +89,7 @@ const handleUploadSubmit = async (e) => {
   formData.append("price", uploadForm.price || 0);
 
     try {
-      await axios.post(`${BASE_URL}/upload`, formData);
+      await axios.post(`${BASE_URL}/api/user/upload`, formData);
       alert("Note uploaded successfully");
       setShowUploadModal(false);
     } catch (err) {

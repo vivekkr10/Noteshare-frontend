@@ -15,6 +15,8 @@ const UserHomePage = () => {
   const [userNotes, setUserNotes] = useState([]);
   const [uploadForm, setUploadForm] = useState({ title: '', subject: '', uploader: '', file: null, image: null });
   const [previewImageUrl, setPreviewImageUrl] = useState(null);
+  const [uploading, setUploading] = useState(false);
+  
   // const navigate = useNavigate();
 
   // const handleLogout = () => {
@@ -77,6 +79,7 @@ const UserHomePage = () => {
 
 const handleUploadSubmit = async (e) => {
   e.preventDefault();
+  setUploading(true);
   const formData = new FormData();
   const userInfo = JSON.parse(localStorage.getItem("userInfo"));
   if (!userInfo?.id) return;
@@ -95,7 +98,9 @@ const handleUploadSubmit = async (e) => {
     } catch (err) {
       alert("Select preview image");
       console.error(err);
-    }
+    }finally {
+    setUploading(false); // Stop spinner
+  }
   };
 
   useEffect(() => {
@@ -292,7 +297,14 @@ const handleUploadSubmit = async (e) => {
                     onChange={handleUploadChange}
                     required
                   /> */}
-                  <button type="submit">Upload Note</button>
+                  <button type="submit" disabled={uploading}>
+  {uploading ? (
+    <i className="bx bx-loader-alt bx-spin" style={{ fontSize: '20px' }}></i>
+  ) : (
+    "Upload Note"
+  )}
+</button>
+
                 </form>
               </div>
             </div>

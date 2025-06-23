@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/MyNotes.css';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const UserNotes = () => {
   const [notes, setNotes] = useState([]);
@@ -13,7 +14,7 @@ const UserNotes = () => {
         const userId = userInfo?.id;
         if (!userId) return;
 
-        const res = await axios.get(`https://noteshare-backend-ujbv.onrender.com/notes/user/${userId}`);
+        const res = await axios.get(`${BASE_URL}/notes/user/${userId}`);
         setNotes(res.data.notes);
         setTotals({
           totalViews: res.data.totalViews,
@@ -39,7 +40,7 @@ const UserNotes = () => {
       notes.map((note, index) => (
         <div className="note-card" key={index}>
           <img
-            src={`https://noteshare-backend-ujbv.onrender.com/${note.image?.replace(/\\/g, '/')}`}
+            src={`${BASE_URL}/${note.image?.replace(/\\/g, '/')}`}
             alt={note.title}
           />
           <h3>{note.title}</h3>

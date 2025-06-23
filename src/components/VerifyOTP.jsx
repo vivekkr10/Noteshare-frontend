@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/VerifyOTP.css';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const VerifyOTP = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const VerifyOTP = () => {
         otp
       };
 
-      const res = await axios.post('https://noteshare-backend-ujbv.onrender.com/verify-otp', payload);
+      const res = await axios.post(`${BASE_URL}/verify-otp`, payload);
       console.log("✅ OTP Verified:", res.data.message);
 
       setMessage("✅ OTP verified. Redirecting...");
@@ -52,7 +53,7 @@ const VerifyOTP = () => {
 
   const handleResendOtp = async () => {
     try {
-      await axios.post('https://noteshare-backend-ujbv.onrender.com/send-otp', {
+      await axios.post(`${BASE_URL}/send-otp`, {
         email: userDetails.email || undefined,
         phone: userDetails.phone || undefined
       });

@@ -3,6 +3,7 @@ import axios from 'axios';
 import { useNavigate, NavLink } from 'react-router-dom';
 import '../css/Register.css';
 import 'boxicons/css/boxicons.min.css';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const Register = () => {
   const navigate = useNavigate();
@@ -27,7 +28,7 @@ const Register = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post(`https://noteshare-backend-ujbv.onrender.com/register`, formData);
+      const res = await axios.post(`${BASE_URL}/register`, formData);
 
       // Save partial data to localStorage for use after OTP verification
       localStorage.setItem("userInfo", JSON.stringify(formData));

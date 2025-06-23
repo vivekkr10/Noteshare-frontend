@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import '../css/Home.css';
 import { NavLink } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const Home = () => {
   const [menuOpen, setMenuOpen] = useState(false); // Toggle state

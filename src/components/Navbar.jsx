@@ -1,6 +1,7 @@
 // src/components/Navbar.jsx
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const Navbar = ({ onUploadClick, onMyNotesClick }) => {
   const [menuOpen, setMenuOpen] = useState(false);

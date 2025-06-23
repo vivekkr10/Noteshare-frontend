@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import '../css/LoginPage.css';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const LoginPage = () => {
   const [form, setForm] = useState({
@@ -28,7 +29,7 @@ const LoginPage = () => {
     e.preventDefault();
 
     try {
-      const response = await axios.post('https://noteshare-backend-ujbv.onrender.com/api/user/login', {
+      const response = await axios.post(`${BASE_URL}/api/user/login`, {
         email: form.email,
         password: form.password,
       });

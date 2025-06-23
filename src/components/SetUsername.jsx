@@ -2,6 +2,7 @@ import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import '../css/SetUsername.css';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const SetUsername = () => {
   const navigate = useNavigate();
@@ -39,7 +40,7 @@ const SetUsername = () => {
         phone: userInfo.phone,
       };
 
-      const res = await axios.post('https://noteshare-backend-ujbv.onrender.com/set-username', payload);
+      const res = await axios.post(`${BASE_URL}/set-username`, payload);
 
       setMessage("🎉 Username set! Account created successfully.");
       localStorage.removeItem("userInfo");

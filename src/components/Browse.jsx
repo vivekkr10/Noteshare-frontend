@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react';
 import '../css/Browse.css';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const Browse = () => {
   const [notes, setNotes] = useState([]);
@@ -15,7 +16,7 @@ const Browse = () => {
     const fetchNotes = async () => {
       try {
         setLoading(true);
-        const res = await axios.get(`https://noteshare-backend-ujbv.onrender.com/notes?page=${currentPage}&limit=${limit}`);
+        const res = await axios.get(`${BASE_URL}/notes?page=${currentPage}&limit=${limit}`);
         setNotes(res.data.notes);
         setTotalPages(res.data.totalPages);
       } catch (err) {
@@ -34,7 +35,7 @@ const Browse = () => {
 
     if (viewedNotes[id]) {
       try {
-        const res = await axios.get(`https://noteshare-backend-ujbv.onrender.com/notes/${id}`);
+        const res = await axios.get(`${BASE_URL}/notes/${id}`);
         setSelectedNote(res.data);
         setShowModal(true);
       } catch (err) {
@@ -44,7 +45,7 @@ const Browse = () => {
     }
 
     try {
-      const res = await axios.get(`https://noteshare-backend-ujbv.onrender.com/${id}?userId=${userInfo?.id}`);
+      const res = await axios.get(`${BASE_URL}/${id}?userId=${userInfo?.id}`);
       setSelectedNote(res.data);
       setShowModal(true);
       viewedNotes[id] = true;
@@ -64,7 +65,7 @@ const Browse = () => {
   try {
     const userInfo = JSON.parse(localStorage.getItem("userInfo"));
 
-    const response = await axios.get(`https://noteshare-backend-ujbv.onrender.com/download/${note._id}?userId=${userInfo?.id}`, {
+    const response = await axios.get(`${BASE_URL}/download/${note._id}?userId=${userInfo?.id}`, {
       responseType: 'blob',
     });
 
@@ -101,7 +102,7 @@ const Browse = () => {
             {notes.map((note) => (
               <div className="note-card" key={note._id} onClick={() => handleNoteClick(note._id)}>
                 <p>{note.uploader?.username}</p>
-                <img src={`https://noteshare-backend-ujbv.onrender.com/${note.image.replace(/\\/g, '/')}`} alt={note.title} />
+                <img src={`${BASE_URL}/${note.image.replace(/\\/g, '/')}`} alt={note.title} />
                 <h4>{note.subject}</h4>
                 <p>Views: {note.views}</p>
                 <p>Downloads: {note.downloads}</p>
@@ -136,7 +137,7 @@ const Browse = () => {
             <div id="modal-content-row">
               <img
                 id="modal-note-image"
-                src={`https://noteshare-backend-ujbv.onrender.com/${selectedNote.image.replace(/\\/g, '/')}`}
+                src={`${BASE_URL}/${selectedNote.image.replace(/\\/g, '/')}`}
                 alt="Note Preview"
               />
               <div id="svdu">

@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useParams } from 'react-router-dom';
 import '../css/UserProfile.css'
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const UserProfile = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ const UserProfile = () => {
   useEffect(() => {
     const fetchUser = async () => {
       try {
-        const res = await axios.get(`hhttps://noteshare-backend-ujbv.onrender.com/user/${id}`);
+        const res = await axios.get(`${BASE_URL}/user/${id}`);
         setUser(res.data);
       } catch (err) {
         console.error(err);

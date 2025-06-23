@@ -1,9 +1,10 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import '../css/UserHomePage.css';
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
-import Navbar from './Navbar';
+// import Navbar from './Navbar';
+const BASE_URL = process.env.REACT_APP_API_URL;
 
 const UserHomePage = () => {
   const [notesCount, setNotesCount] = useState({ count: 0, views: 0, downloads: 0 });
@@ -14,13 +15,13 @@ const UserHomePage = () => {
   const [userNotes, setUserNotes] = useState([]);
   const [uploadForm, setUploadForm] = useState({ title: '', subject: '', uploader: '', file: null, image: null });
   const [previewImageUrl, setPreviewImageUrl] = useState(null);
-  const navigate = useNavigate();
+  // const navigate = useNavigate();
 
-  const handleLogout = () => {
-    localStorage.removeItem("userToken");
-    localStorage.removeItem("userInfo");
-    navigate("/login");
-  };
+  // const handleLogout = () => {
+  //   localStorage.removeItem("userToken");
+  //   localStorage.removeItem("userInfo");
+  //   navigate("/login");
+  // };
 
   const fetchNotes = async () => {
     try {
@@ -28,7 +29,7 @@ const UserHomePage = () => {
       const userId = userInfo?.id;
       if (!userId) return;
 
-      const res = await axios.get(`https://noteshare-backend-ujbv.onrender.com/home/${userId}`);
+      const res = await axios.get(`${BASE_URL}/home/${userId}`);
       setLatestNote(res.data.latest?.[0] || null);
       setPopularNote(res.data.popular?.[0] || null);
     } catch (err) {
@@ -42,7 +43,7 @@ const UserHomePage = () => {
       const userId = userInfo?.id;
       if (!userId) return;
 
-      const res = await axios.get(`https://noteshare-backend-ujbv.onrender.com/notes/stats/${userId}`);
+      const res = await axios.get(`${BASE_URL}/notes/stats/${userId}`);
       setNotesCount(res.data);
     } catch (err) {
       console.error("❌ Failed to fetch stats", err);
@@ -55,7 +56,7 @@ const UserHomePage = () => {
       const userId = userInfo?.id;
       if (!userId) return;
 
-      const res = await axios.get(`https://noteshare-backend-ujbv.onrender.com/notes/user/${userId}`);
+      const res = await axios.get(`${BASE_URL}/notes/user/${userId}`);
       setUserNotes(res.data.notes || []);
       setTimeout(() => setShowNotesModal(true), 0);
     } catch (err) {
@@ -88,7 +89,7 @@ const handleUploadSubmit = async (e) => {
   formData.append("price", uploadForm.price || 0);
 
     try {
-      await axios.post("https://noteshare-backend-ujbv.onrender.com/upload", formData);
+      await axios.post(`${BASE_URL}/upload`, formData);
       alert("Note uploaded successfully");
       setShowUploadModal(false);
     } catch (err) {
@@ -141,7 +142,7 @@ const handleUploadSubmit = async (e) => {
               {latestNote ? (
                 <>
                   <img
-                    src={`https://noteshare-backend-ujbv.onrender.com/${latestNote.image?.replace(/\\/g, "/")}`}
+                    src={`${BASE_URL}/${latestNote.image?.replace(/\\/g, "/")}`}
                     alt={latestNote.title}
                     className="note-image"
                   />
@@ -158,7 +159,7 @@ const handleUploadSubmit = async (e) => {
               {popularNote ? (
                 <>
                   <img
-                    src={`https://noteshare-backend-ujbv.onrender.com/${popularNote.image?.replace(/\\/g, "/")}`}
+                    src={`${BASE_URL}/${popularNote.image?.replace(/\\/g, "/")}`}
                     alt={popularNote.title}
                     className="note-image"
                   />
@@ -214,7 +215,7 @@ const handleUploadSubmit = async (e) => {
                 userNotes.map((note, index) => (
                   <div className="note-card" key={index}>
                     <img
-                      src={`https://noteshare-backend-ujbv.onrender.com/${note.image?.replace(/\\/g, '/')}`}
+                      src={`${BASE_URL}/${note.image?.replace(/\\/g, '/')}`}
                       alt={note.title}
                     />
                     <h4>{note.title}</h4>

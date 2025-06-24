@@ -3,17 +3,16 @@ import { useState } from 'react';
 import Navbar from './Navbar';
 
 const MainLayout = ({ children }) => {
-  const [setShowUploadModal] = useState(false);
-  const [setShowNotesModal] = useState(false);
+  // const [setShowUploadModal] = useState(false);
+  // const [setShowNotesModal] = useState(false);
 
   return (
     <>
       <Navbar
-        onUploadClick={() => setShowUploadModal(true)}
-        onMyNotesClick={() => setShowNotesModal(true)}
+        // onUploadClick={() => setShowUploadModal(true)}
+        // onMyNotesClick={() => setShowNotesModal(true)}
       />
       {children}
-      {/* Optional: Handle modals globally here if needed */}
     </>
   );
 };

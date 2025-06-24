@@ -86,3 +86,51 @@
   color: #10b981;
   font-weight: 500;
 }
+
+@media (max-width: 768px) {
+  #verify-form {
+    max-width: 90%;
+    padding: 30px 20px;
+    margin: 40px auto;
+    border-radius: 16px;
+  }
+
+  #verify-form h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  #otp-input input {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  #verifyBtn, #resendBtn {
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+}
+
+@media (max-width: 425px) {
+  #verify-form {
+    padding: 25px 15px;
+    margin: 30px auto;
+  }
+
+  #verify-form h2 {
+    font-size: 20px;
+  }
+
+  #otp-input label {
+    font-size: 13px;
+  }
+
+  #otp-msg {
+    font-size: 14px;
+  }
+
+  #verifyBtn, #resendBtn {
+    font-size: 14px;
+  }
+}

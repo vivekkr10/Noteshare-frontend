@@ -1,45 +1,49 @@
-import React, { useState } from 'react';
+// import React, { useState } from 'react';
 import '../css/Home.css';
+import '../css/Global.css';
 import { NavLink } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
+import logo from '../images/logo.png'
+import hero_image from '../images/hero-image.png'
 
 const Home = () => {
-  const [menuOpen, setMenuOpen] = useState(false); // Toggle state
+  // const [menuOpen, setMenuOpen] = useState(false); // Toggle state
 
-  const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
-  };
+  // const toggleMenu = () => {
+  //   setMenuOpen(!menuOpen);
+  // };
   
 
    return (
      <div className="home-container" >
-       <section id='nav-bar'>
-         <div id="container">
-           <div id="nav-bar-wrap">
-             <img src="/images/logo.png" alt="Noteshare" id='logo' />
-             <div id="menu-icon" onClick={toggleMenu}>
-          <span className={menuOpen ? 'line rotate1' : 'line'}></span>
-          <span className={menuOpen ? 'line hide' : 'line'}></span>
-          <span className={menuOpen ? 'line rotate2' : 'line'}></span>
-        </div>
-             <div id="buttons" className={menuOpen ? "show" : ""}>
-                 <a href='#home' id='btn'>Home</a>
-                 <button id='btn'>Notes</button>
-                 <a href='#pricing-section' id='btn'>Pricing</a>
-                 <a href='#footer' id='btn'>About</a>
-                 <NavLink className={'a'} style={{ textDecoration: 'none' }} to={'/login'}><button id='btn-login'>Login</button></NavLink>
-              </div>
-             </div>
-         </div>
-       </section>
+        <section id="nav-bar">
+      <div id="nav-bar-container">
+        <img src={logo} alt="Noteshare" id="logo" />
 
-       <section id='home'>
-         <div id="container">
+        {/* Hidden on small screens, shown on larger screens */}
+        <div id="nav-bar-buttons">
+          <a href="#home" id="nav-btn">Home</a>
+          <NavLink to="/register" style={{ textDecoration: 'none' }}>
+            <button id="nav-btn">Notes</button>
+          </NavLink>
+          <a href="#pricing-section" id="nav-btn">Pricing</a>
+          <a href="#footer" id="nav-btn">About</a>
+        </div>
+
+        {/* Always visible login button */}
+        <NavLink to="/login" style={{ textDecoration: 'none' }}>
+          <button id="btn-login" className="tap-effect">Login</button>
+        </NavLink>
+      </div>
+    </section>
+
+       <section id='hero'>
+         <div id="hero-container">
            <div id="get-started">
              <p>Turn your notes into knowledge and your knowledge into impact.</p>
-             <NavLink className={'a'} style={{ textDecoration: 'none' }} to={'/register'}><button>Get Started</button></NavLink>
+             <NavLink className={'a'} style={{ textDecoration: 'none' }} to={'/register'}><button id='btn-get-started'>Get Started</button></NavLink>
            </div>
-           <img src="/images/hero_image.png" alt="" id='hero_image'/>
+           <img src={hero_image} alt="" id='hero-image'/>
          </div>
        </section>
 

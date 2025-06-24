@@ -1,6 +1,8 @@
 // src/components/Navbar.jsx
 import React, { useState } from 'react';
 import { NavLink, useNavigate } from 'react-router-dom';
+import logo from '../images/logo.png'
+
 
 const Navbar = ({ onUploadClick, onMyNotesClick }) => {
   // const [menuOpen, setMenuOpen] = useState(false);
@@ -24,7 +26,7 @@ const Navbar = ({ onUploadClick, onMyNotesClick }) => {
       <div id="nav-container">
         <div id="nav-bar-wrap">
           <NavLink to="/userHomePage">
-            <img src="/images/logo.png" alt="NoteShare" id="logo" />
+            <img src={logo} alt="NoteShare" id="logo" />
           </NavLink>
       
           <div id="nav-links">

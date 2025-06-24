@@ -1,0 +1,102 @@
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  scroll-behavior: smooth;
+}
+
+:root {
+  --primary-color: #486ac9;
+  --nav-bg: #e2eefd;
+}
+
+/* Mobile-first base styles (320px and up) */
+#nav-bar {
+  background-color: var(--nav-bg);
+  padding: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.267);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+}
+
+#nav-bar-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background-color: var(--nav-bg);
+}
+
+#logo {
+  max-width: 80px;
+  height: auto;
+  object-fit: contain;
+}
+
+#nav-bar-buttons {
+  display: none; /* hidden on small screens */
+}
+
+#nav-btn {
+  padding: 3px 7px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 17px;
+  border-radius: 6px;
+  text-decoration: none;
+  background-color: transparent;
+  color: #242424;
+}
+
+#btn-login {
+  padding: 3px 7px;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  font-size: 17px;
+  transition: all 0.3s ease;
+  border-radius: 6px;
+  text-decoration: none;
+  background-color: var(--primary-color);
+  color: #ffffff;
+}
+
+#btn-login:hover {
+  background-color: var(--primary-color);
+  color: #fff;
+}
+
+.tap-effect:active {
+  transform: scale(0.97);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* Medium screens and up (show other buttons) */
+@media (min-width: 768px) {
+  #nav-bar-buttons {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    gap: 40px;
+  }
+
+  #nav-btn {
+    font-weight: bold;
+  }
+
+  #btn-login {
+    font-weight: bold;
+    color: #ffffff;
+  }
+}
+
+/* Larger screens: adjust logo */
+@media (min-width: 1024px) {
+  #logo {
+    max-width: 90px;
+  }
+}

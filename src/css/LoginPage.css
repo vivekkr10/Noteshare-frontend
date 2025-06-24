@@ -1,3 +1,4 @@
+/* ==================== BASE STYLES ==================== */
 #login-form {
   background: #fff;
   max-width: 400px;
@@ -90,3 +91,67 @@
   100% { transform: rotate(360deg); }
 }
 
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding-right: 40px; /* space for the eye icon */
+}
+
+.eye-icon {
+  position: absolute;
+  top: 50%;
+  right: 12px;
+  transform: translateY(-50%);
+  font-size: 20px;
+  color: #6b7280;
+  cursor: pointer;
+}
+
+@media (max-width: 425px) {
+  #login-form {
+    max-width: 90%;
+    padding: 30px 20px;
+  }
+
+  #login-form h1 {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  #login-form input {
+    font-size: 14px;
+    padding: 10px 14px;
+  }
+
+  #loginn {
+    font-size: 15px;
+    padding: 12px;
+  }
+}
+
+@media (max-width: 320px) {
+  #login-form {
+    padding: 25px 15px;
+    border-radius: 16px;
+  }
+
+  #login-form h1 {
+    font-size: 20px;
+  }
+
+  #loginn {
+    font-size: 14px;
+    padding: 10px;
+  }
+}
+
+@media (max-width: 375px)  { /* iPhone */ }
+@media (max-width: 425px)  { /* Large phones */ }
+@media (max-width: 768px)  { /* Tablets */ }
+@media (max-width: 1024px) { /* Small laptops */ }
+@media (max-width: 1280px) { /* Laptops */ }
+@media (min-width: 1281px) { /* Desktops */ }

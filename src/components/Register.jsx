@@ -15,6 +15,7 @@ const Register = () => {
     phone: ''
   });
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
 
   const togglePasswordVisibility = () => {
     setShowPassword(prev => !prev);
@@ -26,20 +27,22 @@ const Register = () => {
   };
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axios.post(`${BASE_URL}/api/user/register`, formData);
+  e.preventDefault();
+  setLoading(true);
 
-      // Save partial data to localStorage for use after OTP verification
-      localStorage.setItem("userInfo", JSON.stringify(formData));
+  try {
+    const res = await axios.post(`${BASE_URL}/api/user/register`, formData);
+    localStorage.setItem("userInfo", JSON.stringify(formData));
+    console.log("✅ OTP Sent:", res.data.message);
+    navigate("/verifyOtp");
+  } catch (err) {
+    console.error("❌ Registration failed:", err.response?.data?.message || err.message);
+    setError(err.response?.data?.message || "Something went wrong");
+  } finally {
+    setLoading(false);
+  }
+};
 
-      console.log("✅ OTP Sent:", res.data.message);
-      navigate("/verifyOtp");
-    } catch (err) {
-      console.error("❌ Registration failed:", err.response?.data?.message || err.message);
-      setError(err.response?.data?.message || "Something went wrong");
-    }
-  };
 
   return (
     <div>
@@ -64,24 +67,34 @@ const Register = () => {
         </div> */}
 
         <div className="form-group">
-          <label htmlFor="password">Password</label>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            id="password"
-            name="password"
-            value={formData.password}
-            onChange={handleChange}
-            required
-            style={{ paddingRight: '40px' }}
-          />
-          <i
-            id="eye"
-            className={showPassword ? 'bx bx-hide' : 'bx bx-show'}
-            onClick={togglePasswordVisibility}
-          />
-        </div>
+  <label htmlFor="password">Password</label>
+  <div className="input-wrapper">
+    <input
+      type={showPassword ? 'text' : 'password'}
+      id="password"
+      name="password"
+      value={formData.password}
+      onChange={handleChange}
+      required
+    />
+    <i
+      className={`eye-icon ${showPassword ? 'bx bx-hide' : 'bx bx-show'}`}
+      onClick={togglePasswordVisibility}
+    />
+  </div>
+</div>
 
-        <button id="registerBtn" type="submit">Sign Up</button>
+
+        <button id="registerBtn" type="submit" disabled={loading}>
+  {loading ? (
+    <>
+      <span className="loader"></span> Registering...
+    </>
+  ) : (
+    'Sign Up'
+  )}
+</button>
+
         <p>Already have an account? <NavLink to="/login">Login here</NavLink></p>
       </form>
     </div>

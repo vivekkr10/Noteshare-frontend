@@ -79,3 +79,63 @@ body {
   font-size: 14px;
   color: #dc2626;
 }
+
+/* Tablet screens and below */
+@media (max-width: 768px) {
+  #set-username-form {
+    max-width: 90%;
+    padding: 30px 20px;
+    margin: 40px auto;
+    border-radius: 16px;
+  }
+
+  #set-username-form h2 {
+    font-size: 22px;
+    margin-bottom: 25px;
+  }
+
+  #set-username-form input {
+    padding: 10px 14px;
+    font-size: 14px;
+  }
+
+  #submit-btn {
+    padding: 12px;
+    font-size: 15px;
+    border-radius: 12px;
+  }
+
+  #set-username-form p {
+    font-size: 13px;
+  }
+}
+
+/* Phones (smaller than 426px) */
+@media (max-width: 425px) {
+  #set-username-form {
+    padding: 25px 15px;
+    margin: 30px auto;
+  }
+
+  #set-username-form h2 {
+    font-size: 20px;
+  }
+
+  #set-username-form label {
+    font-size: 13px;
+  }
+
+  #set-username-form input {
+    font-size: 13px;
+  }
+
+  #submit-btn {
+    font-size: 14px;
+    padding: 10px;
+  }
+
+  #set-username-form p {
+    font-size: 12px;
+  }
+}
+  

@@ -1,6 +1,4 @@
-/* ------------------ Uploaded Notes Section -------------------- */
-
-#uploaded-notes-section {
+/* #uploaded-notes-section {
   padding: 2rem;
   background-color: #ffffff;
   max-width: 1200px;
@@ -63,15 +61,15 @@
   margin-bottom: 0.3rem;
 }
 
-/* Responsive Tweaks */
+
 @media screen and (max-width: 768px) {
   #notes-grid {
     justify-content: center;
   }
 
-  /* .note-card {
+  .note-card {
     width: 90%;
-  } */
+  }
 }
 
 #footer {
@@ -141,4 +139,4 @@
   margin-top: 2rem;
   font-size: 0.9rem;
   color: #888;
-}
+} */

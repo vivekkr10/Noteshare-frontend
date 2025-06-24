@@ -73,21 +73,23 @@ const LoginPage = () => {
         </div>
 
         <div id="login-password">
-          <label htmlFor="password">Password</label>
-          <input
-            type={showPassword ? 'text' : 'password'}
-            name="password"
-            id="password"
-            value={form.password}
-            onChange={handleChange}
-            required
-          />
-          <i
-            id="eye"
-            className={showPassword ? 'bx bx-hide' : 'bx bx-show'}
-            onClick={togglePasswordVisibility}
-          />
-        </div>
+  <label htmlFor="password">Password</label>
+  <div className="input-wrapper">
+    <input
+      type={showPassword ? 'text' : 'password'}
+      name="password"
+      id="password"
+      value={form.password}
+      onChange={handleChange}
+      required
+    />
+    <i
+      className={`eye-icon ${showPassword ? 'bx bx-hide' : 'bx bx-show'}`}
+      onClick={togglePasswordVisibility}
+    />
+  </div>
+</div>
+
 
         <button id="loginn" type="submit" disabled={loading}>
           {loading ? (

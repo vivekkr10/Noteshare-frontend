@@ -3,7 +3,6 @@ import axios from 'axios';
 import '../css/UserHomePage.css';
 import { NavLink } from 'react-router-dom';
 import 'boxicons/css/boxicons.min.css';
-// import Navbar from './Navbar';
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const UserHomePage = () => {

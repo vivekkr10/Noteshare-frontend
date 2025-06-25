@@ -1,5 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Allow:
+Disallow:
 
-sitemap.xml: https://noteshare-frontend-amber.vercel.app/sitemap.xml
+Sitemap: https://noteshare-frontend-amber.vercel.app/sitemap.xml

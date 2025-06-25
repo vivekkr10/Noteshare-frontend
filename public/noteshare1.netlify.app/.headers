@@ -1,0 +1,20 @@
+[
+  {
+    "applyTo": "sitemap.xml",
+    "headers": [
+      {
+        "name": "content-type",
+        "value": "application/xml"
+      }
+    ]
+  },
+  {
+    "applyTo": "*",
+    "headers": [
+      {
+        "name": "header-name-1",
+        "value": "header value"
+      }
+    ]
+  }
+]

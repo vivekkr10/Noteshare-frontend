@@ -1,2 +1,4 @@
-/sitemap.xml
-  Content-Type: application/xml
+[[headers]]
+  for = "/sitemap.xml"
+  [headers.values]
+    Content-Type = "application/xml"

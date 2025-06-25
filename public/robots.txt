@@ -1,5 +1,5 @@
 # https://www.robotstxt.org/robotstxt.html
 User-agent: *
-Disallow:
+Allow:
 
-Sitemap: https://noteshare1.netlify.app/sitemap.xml
+Sitemap: https://noteshare-frontend-amber.vercel.app/sitemap.xml

@@ -2,4 +2,4 @@
 User-agent: *
 Disallow:
 
-Sitemap: https://noteshare-frontend-amber.vercel.app/sitemap.xml
+Sitemap: https://noteshare1.netlify.app//sitemap.xml

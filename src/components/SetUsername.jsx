@@ -1,20 +1,20 @@
-import axios from 'axios';
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../css/SetUsername.css';
+import axios from "axios";
+import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/SetUsername.css";
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const SetUsername = () => {
   const navigate = useNavigate();
 
-  const [username, setUsername] = useState('');
+  const [username, setUsername] = useState("");
   const [userInfo, setUserInfo] = useState({});
-  const [message, setMessage] = useState('');
-  const [warning, setWarning] = useState('');
+  const [message, setMessage] = useState("");
+  const [warning, setWarning] = useState("");
   const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    const saved = localStorage.getItem('userInfo');
+    const saved = localStorage.getItem("userInfo");
     if (saved) {
       setUserInfo(JSON.parse(saved));
     } else {
@@ -40,9 +40,14 @@ const SetUsername = () => {
         phone: userInfo.phone,
       };
 
-      const res = await axios.post(`${BASE_URL}/api/user/set-username`, payload);
+      const res = await axios.post(
+        `${BASE_URL}/api/user/set-username`,
+        payload
+      );
 
-      setMessage(res.data.message || "🎉 Username set! Account created successfully.");
+      setMessage(
+        res.data.message || "🎉 Username set! Account created successfully."
+      );
       localStorage.removeItem("userInfo");
 
       setTimeout(() => navigate("/userHomePage"), 1500);
@@ -59,13 +64,15 @@ const SetUsername = () => {
 
     // If there's a space or uppercase, show warning
     if (/[A-Z]/.test(input) || /\s/.test(input)) {
-      setWarning("⚠️ Only lowercase letters, numbers, and special symbols allowed. No spaces or capital letters.");
+      setWarning(
+        "⚠️ Only lowercase letters, numbers, and special symbols allowed. No spaces or capital letters."
+      );
     } else {
-      setWarning('');
+      setWarning("");
     }
 
     // Transform input to lowercase and remove spaces
-    const filtered = input.toLowerCase().replace(/\s/g, '');
+    const filtered = input.toLowerCase().replace(/\s/g, "");
     setUsername(filtered);
   };
 
@@ -88,11 +95,10 @@ const SetUsername = () => {
           />
         </div>
 
-
         <button id="submit-btn" type="submit" disabled={loading}>
           {loading ? "Saving..." : "Submit"}
         </button>
-        {warning && <p style={{ color: 'orange' }}>{warning}</p>}
+        {warning && <p style={{ color: "orange" }}>{warning}</p>}
         {message && <p>{message}</p>}
       </form>
     </div>

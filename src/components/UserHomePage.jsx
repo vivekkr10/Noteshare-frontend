@@ -1,21 +1,33 @@
-import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import '../css/UserHomePage.css';
-import { NavLink } from 'react-router-dom';
-import 'boxicons/css/boxicons.min.css';
+import React, { useEffect, useState } from "react";
+import axios from "axios";
+import "../css/UserHomePage.css";
+import { NavLink } from "react-router-dom";
+import "boxicons/css/boxicons.min.css";
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const UserHomePage = () => {
-  const [notesCount, setNotesCount] = useState({ count: 0, views: 0, downloads: 0 });
+  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+  const userName = userInfo?.name || "User";
+  const [notesCount, setNotesCount] = useState({
+    count: 0,
+    views: 0,
+    downloads: 0,
+  });
   const [latestNote, setLatestNote] = useState(null);
   const [popularNote, setPopularNote] = useState(null);
   const [showNotesModal, setShowNotesModal] = useState(false);
   const [showUploadModal, setShowUploadModal] = useState(false);
   const [userNotes, setUserNotes] = useState([]);
-  const [uploadForm, setUploadForm] = useState({ title: '', subject: '', uploader: '', file: null, image: null });
+  const [uploadForm, setUploadForm] = useState({
+    title: "",
+    subject: "",
+    uploader: "",
+    file: null,
+    image: null,
+  });
   const [previewImageUrl, setPreviewImageUrl] = useState(null);
   const [uploading, setUploading] = useState(false);
-  
+
   // const navigate = useNavigate();
 
   // const handleLogout = () => {
@@ -66,29 +78,28 @@ const UserHomePage = () => {
   };
 
   const handleUploadChange = (e) => {
-  const { name, value, files } = e.target;
-  if (files) {
-    if (name === 'image') setPreviewImageUrl(URL.createObjectURL(files[0]));
-    setUploadForm({ ...uploadForm, [name]: files[0] });
-  } else {
-    setUploadForm({ ...uploadForm, [name]: value });
-  }
-};
+    const { name, value, files } = e.target;
+    if (files) {
+      if (name === "image") setPreviewImageUrl(URL.createObjectURL(files[0]));
+      setUploadForm({ ...uploadForm, [name]: files[0] });
+    } else {
+      setUploadForm({ ...uploadForm, [name]: value });
+    }
+  };
 
+  const handleUploadSubmit = async (e) => {
+    e.preventDefault();
+    setUploading(true);
+    const formData = new FormData();
+    const userInfo = JSON.parse(localStorage.getItem("userInfo"));
+    if (!userInfo?.id) return;
 
-const handleUploadSubmit = async (e) => {
-  e.preventDefault();
-  setUploading(true);
-  const formData = new FormData();
-  const userInfo = JSON.parse(localStorage.getItem("userInfo"));
-  if (!userInfo?.id) return;
-  
-  formData.append("uploader", userInfo.id);
-  formData.append("title", uploadForm.title);
-  formData.append("subject", uploadForm.subject);
-  if (uploadForm.file) formData.append("file", uploadForm.file);
-  if (uploadForm.image) formData.append("image", uploadForm.image);
-  formData.append("price", uploadForm.price || 0);
+    formData.append("uploader", userInfo.id);
+    formData.append("title", uploadForm.title);
+    formData.append("subject", uploadForm.subject);
+    if (uploadForm.file) formData.append("file", uploadForm.file);
+    if (uploadForm.image) formData.append("image", uploadForm.image);
+    formData.append("price", uploadForm.price || 0);
 
     try {
       await axios.post(`${BASE_URL}/api/user/upload`, formData);
@@ -97,9 +108,9 @@ const handleUploadSubmit = async (e) => {
     } catch (err) {
       alert("Select preview image");
       console.error(err);
-    }finally {
-    setUploading(false); // Stop spinner
-  }
+    } finally {
+      setUploading(false); // Stop spinner
+    }
   };
 
   useEffect(() => {
@@ -109,14 +120,13 @@ const handleUploadSubmit = async (e) => {
 
   return (
     <div id="home-container">
-
       <section id="welcome">
-        <h1>Welcome back, User! 👋</h1>
+        <h1>Welcome back, {userName} 👋</h1>
         <p>Discover new notes, or share your knowledge today.</p>
       </section>
 
-      <section id='count-upload'>
-        <div id='count'>
+      <section id="count-upload">
+        <div id="count">
           <div id="count-notes">
             <h2 id="count-num">{notesCount.count}</h2>
             <h3 id="notes-uploaded">Notes Uploaded</h3>
@@ -131,13 +141,19 @@ const handleUploadSubmit = async (e) => {
           </div>
         </div>
         <div id="count-buttons">
-          <button id='c-btn' onClick={() => setShowUploadModal(true)}>Upload Notes</button>
-          <button id='c-btn' onClick={fetchUserNotes}>My Notes</button>
-          <NavLink to='/browse'><button id='c-btn'>Browse all notes</button></NavLink>
+          <button id="c-btn" onClick={() => setShowUploadModal(true)}>
+            Upload Notes
+          </button>
+          <button id="c-btn" onClick={fetchUserNotes}>
+            My Notes
+          </button>
+          <NavLink to="/browse">
+            <button id="c-btn">Browse all notes</button>
+          </NavLink>
         </div>
       </section>
 
-      <section id='latest-popular'>
+      <section id="latest-popular">
         <div className="combined-note-card">
           <h2>Your Notes Summary</h2>
           <div className="note-split">
@@ -163,7 +179,10 @@ const handleUploadSubmit = async (e) => {
               {popularNote ? (
                 <>
                   <img
-                    src={`${BASE_URL}/${popularNote.image?.replace(/\\/g, "/")}`}
+                    src={`${BASE_URL}/${popularNote.image?.replace(
+                      /\\/g,
+                      "/"
+                    )}`}
                     alt={popularNote.title}
                     className="note-image"
                   />
@@ -178,48 +197,66 @@ const handleUploadSubmit = async (e) => {
         </div>
       </section>
 
-      
-       <footer id="footer">
-         <div class="footer-container">
-           <div class="footer-logo">
-             <h2>NoteShare</h2>
-             <p>Empowering learners everywhere.</p>
-           </div>
-           
-           <div class="footer-links">
-             <a href="aergd">About</a>
-             <a href="aergd">Contact</a>
-             <a href="aergd">Privacy Policy</a>
-             <a href="aergd">Terms</a>
-           </div>
-
-           <div class="footer-social">
-             <a href="aergd"><i class='bx bxl-twitter'></i></a>
-             <a href="aergd"><i class='bx bxl-instagram'></i></a>
-             <a href="aergd"><i class='bx bxl-linkedin'></i></a>
-             <a href="aergd"><i class='bx bxl-github'></i></a>
-           </div>
-         </div>
-
-         <div class="footer-bottom">
-           <p>&copy; 2025 NoteShare. All rights reserved.</p>
-         </div>
-       </footer>
+      <footer id="footer">
+        <div id="container">
+          <div id="subscribe">
+            <p>Join our community — subscribe for updates and offers!</p>
+            <div id="subscribe-input">
+              <input type="text" placeholder="Enter your email" />
+              <button>Subscribe</button>
+            </div>
+          </div>
+          <hr />
+          <div id="footer-div">
+            <div id="icons">
+              <h3>NoteShare</h3>
+            </div>
+            <div id="footer-wrap">
+              <div id="support">
+                <h3>Support</h3>
+                <p>Help Center</p>
+                <p>User Support</p>
+                <p>Tutorials</p>
+              </div>
+              <div id="resources">
+                <h3>Resources</h3>
+                <p>Terms of Service</p>
+                <p>Site Map</p>
+                <p>About Management</p>
+              </div>
+              <div id="get-in-touch">
+                <h3>Get in touch</h3>
+                <p>support@noteshare.com</p>
+                <p>+91 1234567890</p>
+              </div>
+            </div>
+          </div>
+          <hr />
+          <div class="footer-bottom">
+            <p>&copy; 2025 NoteShare. All rights reserved.</p>
+          </div>
+        </div>
+      </footer>
 
       {/* 🔳 My Notes Modal */}
       {showNotesModal && (
-        <div id="myNotes" onClick={(e) => {
-          if (e.target.id === "myNotes") setShowNotesModal(false);
-        }}>
+        <div
+          id="myNotes"
+          onClick={(e) => {
+            if (e.target.id === "myNotes") setShowNotesModal(false);
+          }}
+        >
           <div id="myNotes-container">
-            <button id="myNotes-btn" onClick={() => setShowNotesModal(false)}>×</button>
+            <button id="myNotes-btn" onClick={() => setShowNotesModal(false)}>
+              ×
+            </button>
             <h2>My Notes</h2>
             <div id="notes-grid">
               {userNotes.length > 0 ? (
                 userNotes.map((note, index) => (
                   <div className="note-card" key={index}>
                     <img
-                      src={`${BASE_URL}/${note.image?.replace(/\\/g, '/')}`}
+                      src={`${BASE_URL}/${note.image?.replace(/\\/g, "/")}`}
                       alt={note.title}
                     />
                     <h4>{note.title}</h4>
@@ -237,32 +274,48 @@ const handleUploadSubmit = async (e) => {
 
       {/* 📤 Upload Modal */}
       {showUploadModal && (
-        <div id="notes-modal-overlay" onClick={(e) => {
-          if (e.target.id === "notes-modal-overlay") setShowUploadModal(false);
-        }}>
+        <div
+          id="notes-modal-overlay"
+          onClick={(e) => {
+            if (e.target.id === "notes-modal-overlay")
+              setShowUploadModal(false);
+          }}
+        >
           <div id="notes-modal-container">
-            <button id="close-modal-btn" onClick={() => setShowUploadModal(false)}>×</button>
+            <button
+              id="close-modal-btn"
+              onClick={() => setShowUploadModal(false)}
+            >
+              ×
+            </button>
             <h2>Upload New Note</h2>
             <div id="upload-layout">
               <div id="upload-preview">
                 {previewImageUrl ? (
                   <img src={previewImageUrl} alt="Preview" />
                 ) : (
-                  <label htmlFor="image-upload" id="upload-image-btn">Select Preview Image</label>
+                  <label htmlFor="image-upload" id="upload-image-btn">
+                    Select Preview Image
+                  </label>
                 )}
                 <input
                   type="file"
                   id="image-upload"
                   name="image"
-                  style={{ display: 'none' }}
+                  style={{ display: "none" }}
                   accept="image/*"
                   onChange={handleUploadChange}
                 />
               </div>
 
               <div id="upload-form">
-                <form onSubmit={handleUploadSubmit} encType="multipart/form-data">
-                  <label htmlFor="file-upload" id="upload-btn">Select PDF File</label>
+                <form
+                  onSubmit={handleUploadSubmit}
+                  encType="multipart/form-data"
+                >
+                  <label htmlFor="file-upload" id="upload-btn">
+                    Select PDF File
+                  </label>
                   <input
                     type="file"
                     id="file-upload"
@@ -270,7 +323,7 @@ const handleUploadSubmit = async (e) => {
                     required
                     accept="application/pdf"
                     onChange={handleUploadChange}
-                    style={{ display: 'none' }}
+                    style={{ display: "none" }}
                   />
                   <input
                     type="text"
@@ -297,13 +350,15 @@ const handleUploadSubmit = async (e) => {
                     required
                   /> */}
                   <button type="submit" disabled={uploading}>
-  {uploading ? (
-    <i className="bx bx-loader-alt bx-spin" style={{ fontSize: '20px' }}></i>
-  ) : (
-    "Upload Note"
-  )}
-</button>
-
+                    {uploading ? (
+                      <i
+                        className="bx bx-loader-alt bx-spin"
+                        style={{ fontSize: "20px" }}
+                      ></i>
+                    ) : (
+                      "Upload Note"
+                    )}
+                  </button>
                 </form>
               </div>
             </div>

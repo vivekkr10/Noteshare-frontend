@@ -1,21 +1,21 @@
-import React, { useState } from 'react';
-import { NavLink, useNavigate } from 'react-router-dom';
-import axios from 'axios';
-import '../css/LoginPage.css';
+import React, { useState } from "react";
+import { NavLink, useNavigate } from "react-router-dom";
+import axios from "axios";
+import "../css/LoginPage.css";
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const LoginPage = () => {
   const [form, setForm] = useState({
-    email: '',
-    password: '',
+    email: "",
+    password: "",
   });
   const [showPassword, setShowPassword] = useState(false);
-  const [message, setMessage] = useState('');
+  const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const togglePasswordVisibility = () => {
-    setShowPassword(prev => !prev);
+    setShowPassword((prev) => !prev);
   };
 
   const handleChange = (e) => {
@@ -28,7 +28,7 @@ const LoginPage = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setLoading(true)
+    setLoading(true);
 
     try {
       const response = await axios.post(`${BASE_URL}/api/user/login`, {
@@ -37,11 +37,14 @@ const LoginPage = () => {
       });
 
       // ✅ Save user info locally
-      localStorage.setItem("userInfo", JSON.stringify({
-        id: response.data.user.id,
-        username: response.data.user.username,
-        email: response.data.user.email,
-      }));
+      localStorage.setItem(
+        "userInfo",
+        JSON.stringify({
+          id: response.data.user.id,
+          username: response.data.user.username,
+          email: response.data.user.email,
+        })
+      );
 
       // ✅ Save token if needed
       localStorage.setItem("userToken", response.data.token);
@@ -73,34 +76,37 @@ const LoginPage = () => {
         </div>
 
         <div id="login-password">
-  <label htmlFor="password">Password</label>
-  <div className="input-wrapper">
-    <input
-      type={showPassword ? 'text' : 'password'}
-      name="password"
-      id="password"
-      value={form.password}
-      onChange={handleChange}
-      required
-    />
-    <i
-      className={`eye-icon ${showPassword ? 'bx bx-hide' : 'bx bx-show'}`}
-      onClick={togglePasswordVisibility}
-    />
-  </div>
-</div>
-
+          <label htmlFor="password">Password</label>
+          <div className="input-wrapper">
+            <input
+              type={showPassword ? "text" : "password"}
+              name="password"
+              id="password"
+              value={form.password}
+              onChange={handleChange}
+              required
+            />
+            <i
+              className={`eye-icon ${
+                showPassword ? "bx bx-hide" : "bx bx-show"
+              }`}
+              onClick={togglePasswordVisibility}
+            />
+          </div>
+        </div>
 
         <button id="loginn" type="submit" disabled={loading}>
           {loading ? (
-        <>
-          <span className="loader"></span> Logging in...
-        </>
+            <>
+              <span className="loader"></span> Logging in...
+            </>
           ) : (
-          "Login"
+            "Login"
           )}
         </button>
-        <p>Don't have an account? <NavLink to="/login">Register here</NavLink></p>
+        <p>
+          Don't have an account? <NavLink to="/register">Register here</NavLink>
+        </p>
 
         {message && <p id="login-message">{message}</p>}
       </form>

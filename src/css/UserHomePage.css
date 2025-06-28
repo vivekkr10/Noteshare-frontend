@@ -203,13 +203,13 @@
   position: absolute;
   top: 10px;
   right: 10px;
-  background: red;
-  color: #fff;
+  background: transparent;
+  color: #000000;
   border: none;
   border-radius: 50%;
   width: 32px;
   height: 32px;
-  font-size: 18px;
+  font-size: 30px;
   cursor: pointer;
 }
 
@@ -467,7 +467,7 @@
 
 #count-num {
   font-size: 2.5rem;
-  color: #486ac9;
+  color: #000000;
   font-weight: bold;
 }
 
@@ -492,15 +492,15 @@
   border: none;
   font-size: 1rem;
   font-weight: 500;
-  background-color: #A8DF8E;
-  color: #2E2E2E;
+  background-color: #212938;
+  color: #ffffff;
   border-radius: 8px;
   transition: all 0.3s ease;
   cursor: pointer;
 }
 
 #count-buttons #c-btn:hover {
-  background-color: #3B82F6;
+  background-color: #212938;
   color: #fff;
   transform: translateY(-2px);
   box-shadow: 0 5px 8px rgba(0, 0, 0, 0.1);
@@ -658,8 +658,8 @@
   padding-bottom: 36px;
   top: 12px;
   right: 12px;
-  background-color: crimson;
-  color: white;
+  background-color: transparent;
+  color: #000000;
   border: none;
   border-radius: 50%;
   width: 35px;
@@ -701,7 +701,7 @@
 #upload-image-btn {
   display: inline-block;
   padding: 10px 20px;
-  background-color: #007bff;
+  background-color: #0c2641;
   color: white;
   border-radius: 8px;
   cursor: pointer;
@@ -721,7 +721,7 @@
 #upload-btn {
   display: inline-block;
   padding: 10px 16px;
-  background-color: #28a745;
+  background-color: #252b38;
   color: white;
   font-weight: bold;
   border-radius: 6px;
@@ -731,7 +731,7 @@
 }
 
 #upload-btn:hover {
-  background-color: #218838;
+  background-color: #353b47;
 }
 
 
@@ -747,7 +747,7 @@
 
 #upload-form button[type="submit"] {
   padding: 10px 18px;
-  background-color: #28a745;
+  background-color: #252b38;
   color: white;
   border: none;
   border-radius: 6px;
@@ -757,7 +757,7 @@
 }
 
 #upload-form button[type="submit"]:hover {
-  background-color: #218838;
+  background-color: #353b47;
 }
 
 /* ------------------ Responsive ------------------ */
@@ -766,8 +766,6 @@
     flex-direction: column;
   }
 }
-
-
 
 button[disabled] {
   background-color: #aaa;

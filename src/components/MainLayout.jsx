@@ -1,6 +1,6 @@
 // components/MainLayout.jsx
 // import { useState } from 'react';
-import Navbar from './Navbar';
+import Navbar from "./Navbar";
 
 const MainLayout = ({ children }) => {
   // const [setShowUploadModal] = useState(false);
@@ -9,8 +9,8 @@ const MainLayout = ({ children }) => {
   return (
     <>
       <Navbar
-        // onUploadClick={() => setShowUploadModal(true)}
-        // onMyNotesClick={() => setShowNotesModal(true)}
+      // onUploadClick={() => setShowUploadModal(true)}
+      // onMyNotesClick={() => setShowNotesModal(true)}
       />
       {children}
     </>

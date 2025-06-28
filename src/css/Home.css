@@ -4,7 +4,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family:Arial, Helvetica, sans-serif;
+  font-family: Arial, Helvetica, sans-serif;
 }
 
 body {
@@ -14,19 +14,21 @@ body {
 }
 
 /* Navbar */
-/* NavBar Section */
-#nav-bar {
+#nav_bar {
   background-color: #ffffff;
+  position: sticky;
+  top: 0%;
+  width: 100%;
 }
 
-#nav-bar #container {
+#nav_bar #container {
   padding: 20px 200px;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-#nav-bar h1 {
+#nav_bar h1 {
   font-size: 25px;
   font-weight: bolder;
   color: #000000;
@@ -35,7 +37,7 @@ body {
 .login-register button {
   margin-left: 10px;
   padding: 13px 23px;
-  background-color: #000000;
+  background-color: #111827;
   color: #fff;
   border: none;
   border-radius: 18px;
@@ -44,9 +46,8 @@ body {
 }
 
 .login-register button:hover {
-  background-color: #3753a6;
+  background-color: #242424;
 }
-
 /* Hero Section */
 
 #hero{
@@ -55,12 +56,13 @@ body {
   flex-wrap: wrap;
   justify-content: center;
   padding: 100px;
+  background-color: #ffffff;
 }
 
 #hero #container{
   display: flex;
   align-items: center;
-  flex-wrap: wrap;
+  /* flex-wrap: wrap; */
   flex-direction: column;
 }
 
@@ -86,7 +88,7 @@ body {
   flex-direction: row;
   align-items: end;
   gap: 10px;
-  margin-right: -170px;
+  margin-right: -170px; 
 }
 
 .search input {
@@ -97,12 +99,16 @@ body {
   outline: none;
   background-color: #f5f5f5;
   border-radius: 18px;
-  color: #000000;
+  color: #111827;
+}
+
+#register-btn{
+  display: none;
 }
 
 .search button {
   padding: 15px 28px;
-  background-color: #000000;
+  background-color: #111827;
   color: white;
   border: none;
   border-radius: 18px;
@@ -177,24 +183,24 @@ body {
   margin-bottom: 15px;
 }
 
-.as-a-selleer{
+.as-a-seller{
   max-width: 250px;
 }
 
-.as-a-selleer h2 {
+.as-a-seller h2 {
   margin-top: 30px;
   margin-bottom: 10px;
-  color: #000000;
+  color: #111827;
 }
 
-.as-a-selleer p {
+.as-a-seller p {
   font-size: 15px;
   margin-bottom: 60px;
 }
 
-.as-a-selleer button {
+.as-a-seller button {
   padding: 15px 28px;
-  background-color: #000000;
+  background-color: #111827;
   color: white;
   border: none;
   border-radius: 18px;
@@ -218,20 +224,24 @@ body {
   flex-wrap: wrap;
 }
 
+.access-notes{
+  max-width: 350px;
+}
+
 .access-notes h2 {
   font-size: 28px;
   margin-bottom: 15px;
-  color: #000000;
+  color: #111827;
 }
 
-.access-notes pre {
+.access-notes p {
   margin-bottom: 20px;
   font-size: 15px;
 }
 
 .access-notes button {
   padding: 15px 28px;
-  background-color: #000000;
+  background-color: #111827;
   color: white;
   border: none;
   border-radius: 18px;
@@ -241,26 +251,26 @@ body {
 
 #access img {
   max-width: 340px;
-  flex: 1;
+  /* flex: 1; */
   margin-left: 40px;
 }
 
 /* Footer Section */
 #footer {
-  background-color: #000000;
+  background-color: #111827;
   padding: 30px 40px 40px 40px;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  align-items: center;
 }
 
 #footer #container {
-  /* max-width: 1200px; */
   margin: 0 auto;
   padding: 0 20px;
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-between; */
   flex-direction: column;
-  gap: 40px;
+  gap: 10px;
+  justify-content: center;
 }
 
 /* Subscribe Section */
@@ -283,11 +293,11 @@ body {
   margin-bottom: 10px;
   border: none;
   outline: none;
-  margin-right: -400px;
+  margin-right: 20px;
 }
 
 #subscribe button {
-  padding: 20px;
+  padding: 15px 20px;
   background-color: #ffffff;
   color: rgb(0, 0, 0);
   border: none;
@@ -331,46 +341,297 @@ body {
   max-width: 200px;
 }
 
+.footer-bottom {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.footer-bottom p {
+  color: #ffffff;
+  font-size: 12px;
+}
+
 /* Responsive */
 @media (max-width: 768px) {
-  #footer #container {
+
+  #nav_bar #container {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  #hero img{
+    max-width: 110px;
+  }
+
+  .text-img .h1{
+    display: flex;
+    flex-direction: column;
+    font-size: 24px;
+    max-width: 550px;
+    align-items: center;
+  }
+
+  .text-img{
+    display: flex;
+    margin-left: -110px;
+  }
+
+  .search{
+    margin-right: -110px;
+  }
+
+  .search input {
+    padding: 12px;
+    width: 300px;
+  }
+
+  .search button{
+    padding: 12px 28px;
+  }
+
+  #how-it-works {
+    padding: 40px;
+    background-color: #ffffff;
+    gap: 40px;
+  }
+
+  #join-noteshare {
+    padding: 40px;
+    background-color: #ffffff;
+  }
+
+  #join-noteshare #container{
+    gap: 0;
+  }
+
+  .noteshare {
+    gap: 150px;
+  }
+
+  #access {
+    padding: 0px;
+  }
+
+  #access #container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: row;
+    padding: 60px 40px;
+  }
+
+  .access-notes {
+    max-width: 325px;
+  }
+
+  #access img {
+    max-width: 300px;
+    /* margin-left: 40px; */
+  }
+
+
+  /* #footer #container {
     flex-direction: column;
     align-items: flex-start;
     gap: 30px;
+  } */
+
+  #subscribe button {
+    padding: 15px;
+    /* width: 50px; */
+    background-color: #ffffff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 20px;
+    cursor: pointer;
+    margin-bottom: 11px;
   }
 
-  #subscribe input,
-  #subscribe button {
-    width: 100%;
+  #subscribe input {
+    display: none;
   }
 }
 
 
 /* Responsive Design */
-@media (max-width: 768px) {
-  #hero,
-  #access {
-    flex-direction: column;
-    text-align: center;
+@media (max-width: 375px) {
+
+  h1 {
+    font-size: 18px;
   }
 
-  .search,
-  .text-img {
+  #nav_bar_register{
+    display: none;
+  }
+
+  #nav_bar h1{
+    font-size: 17px;
+  }
+
+  #nav_bar button{
+    padding: 10px 20px;
+    font-size: 11px;
+  }
+
+  #hero{
+    padding: 40px;
+  }
+
+  #hero #container{
+    display: flex;
     align-items: center;
-  }
-
-  .search input {
-    width: 80%;
-  }
-
-  #how-it-works,
-  #join-noteshare {
+    flex-wrap: wrap;
     flex-direction: column;
-    align-items: center;
   }
 
-  #access img {
+  #hero img{
+    display:none;
+  }
+
+  .text-img{
+    display: flex;
     margin-left: 0;
-    margin-top: 20px;
   }
-}
+
+  .search {
+    margin-right: 0px;
+  }
+
+  .search input{
+    display:none;
+  }
+
+  .search .find{
+    display:none;
+  }
+
+  .search #register-btn{
+    display:flex;
+    padding: 10px 20px;
+    font-size: 11px;
+  }
+
+  .text-img .h1{
+    font-size: 12px;
+    max-width: 200px;
+    margin-bottom: 10px;
+  }
+
+  #how-it-works img{
+    max-width: 180px;
+  }
+
+  #how-it-works h2 {
+    font-size: 17px;
+  }
+
+  .steps p{
+    font-size: 12px;
+    max-width: 180px;
+  }
+
+  #join-noteshare {
+    padding: 20px;
+    padding-bottom: 0;
+    background-color: #ffffff;
+  }
+
+  #join-noteshare #container {
+    display: flex;
+    flex-direction: column;
+    gap: 40px;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .noteshare{
+    gap: 0px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .noteshare img {
+    width: 180px;
+    margin-bottom: 0;
+  }
+  .as-a-seller{
+    max-width: 188px;
+  }
+
+  .as-a-seller h2 {
+    margin-bottom: 0;
+    font-size: 17px;
+  }
+
+  .as-a-seller p {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+  .as-a-seller button {
+    padding: 10px 20px;
+    font-size: 11px;
+  }
+  
+  #access {
+    padding: 0;
+    background-color: #ffffff;
+    flex-wrap: wrap;
+  }
+
+  #access #container{
+    display: flex;
+    flex-direction: column-reverse;
+  }
+
+  #access img{
+    width: 180px;
+  }
+
+  #access p{
+    font-size: 12px;
+  }
+
+  #access button {
+    padding: 10px 20px;
+    font-size: 11px;
+  }
+
+  #footer {
+    padding: 10px;
+    display: flex;
+    align-items: center;
+  }
+
+  #footer button{
+    display: none;
+  }
+
+  #footer-div{
+    display: flex;
+    flex-direction: column;
+  }
+
+  #icons{
+    flex: 1 1 0px;
+    margin-bottom: 20px;
+  }
+  
+  #footer-wrap {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  #footer-wrap h3{
+    font-size: 17px;
+  }
+
+  #footer-wrap p{
+    font-size: 11px;
+  }
+} 

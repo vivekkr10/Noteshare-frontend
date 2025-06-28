@@ -50,7 +50,7 @@
   padding: 14px;
   font-size: 16px;
   font-weight: 600;
-  background: linear-gradient(to right, #6366f1, #8b5cf6);
+  background-color: #111827;
   color: white;
   border: none;
   border-radius: 14px;
@@ -59,7 +59,7 @@
 }
 
 #loginn:hover {
-  background: linear-gradient(to right, #4f46e5, #7c3aed);
+  background-color: #212938;
   transform: translateY(-2px);
 }
 

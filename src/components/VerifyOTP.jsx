@@ -1,23 +1,23 @@
-import axios from 'axios';
-import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import '../css/VerifyOTP.css';
+import axios from "axios";
+import React, { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import "../css/VerifyOTP.css";
 const BASE_URL = process.env.REACT_APP_API_URL;
 
 const VerifyOTP = () => {
   const navigate = useNavigate();
 
   const [userDetails, setUserDetails] = useState({
-    email: '',
-    phone: ''
+    email: "",
+    phone: "",
   });
 
-  const [otp, setOtp] = useState('');
-  const [message, setMessage] = useState('');
+  const [otp, setOtp] = useState("");
+  const [message, setMessage] = useState("");
 
   // ✅ Load user info from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem('userInfo');
+    const saved = localStorage.getItem("userInfo");
     if (saved) {
       const parsed = JSON.parse(saved);
       setUserDetails({ email: parsed.email, phone: parsed.phone });
@@ -37,16 +37,19 @@ const VerifyOTP = () => {
       const payload = {
         email: userDetails.email || undefined,
         phone: userDetails.phone || undefined,
-        otp
+        otp,
       };
 
       const res = await axios.post(`${BASE_URL}/api/user/verify-otp`, payload);
       console.log("✅ OTP Verified:", res.data.message);
 
       setMessage("✅ OTP verified. Redirecting...");
-      setTimeout(() => navigate('/set-username'), 1000);
+      setTimeout(() => navigate("/set-username"), 1000);
     } catch (err) {
-      console.error("❌ OTP verification failed:", err.response?.data?.message || err.message);
+      console.error(
+        "❌ OTP verification failed:",
+        err.response?.data?.message || err.message
+      );
       setMessage("❌ OTP verification failed. Please try again.");
     }
   };
@@ -55,7 +58,7 @@ const VerifyOTP = () => {
     try {
       await axios.post(`${BASE_URL}/send-otp`, {
         email: userDetails.email || undefined,
-        phone: userDetails.phone || undefined
+        phone: userDetails.phone || undefined,
       });
       setMessage("🔁 OTP resent successfully.");
     } catch (err) {
@@ -81,7 +84,9 @@ const VerifyOTP = () => {
           />
         </div>
 
-        <button id="verifyBtn" type="submit">Verify OTP</button>
+        <button id="verifyBtn" type="submit">
+          Verify OTP
+        </button>
 
         <button id="resendBtn" type="button" onClick={handleResendOtp}>
           Resend OTP

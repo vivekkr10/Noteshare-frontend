@@ -30,10 +30,7 @@ const UserProfile = () => {
     return (
       <div className="text-red-600 p-4 text-center">
         {error}
-        <button
-          onClick={() => window.location.reload()}
-          className="ml-2 text-blue-600 underline"
-        >
+        <button onClick={() => window.location.reload()} className="ml-2 text-blue-600 underline">
           Retry
         </button>
       </div>
@@ -41,33 +38,18 @@ const UserProfile = () => {
   }
 
   if (!user) {
-    return (
-      <div className="text-gray-600 p-4 text-center">Loading user data...</div>
-    );
+    return <div className="text-gray-600 p-4 text-center">Loading user data...</div>;
   }
 
   return (
     <div className="user-profile-card">
       <h2 className="profile-title">User Profile</h2>
       <div className="profile-info">
-        <div>
-          <strong>Name:</strong> {user.name}
-        </div>
-        <div>
-          <strong>Email:</strong> {user.email}
-        </div>
-        {user.phone && (
-          <div>
-            <strong>Phone:</strong> {user.phone}
-          </div>
-        )}
-        <div>
-          <strong>Username:</strong> {user.username}
-        </div>
-        <div>
-          <strong>Joined:</strong>{" "}
-          {new Date(user.createdAt).toLocaleDateString()}
-        </div>
+        <div><strong>Name:</strong> {user.name}</div>
+        <div><strong>Email:</strong> {user.email}</div>
+        {user.phone && <div><strong>Phone:</strong> {user.phone}</div>}
+        <div><strong>Username:</strong> {user.username}</div>
+        <div><strong>Joined:</strong> {new Date(user.createdAt).toLocaleDateString()}</div>
       </div>
     </div>
   );

@@ -107,7 +107,9 @@ const Navbar = ({ onUploadClick, onMyNotesClick }) => {
             />
             {dropdownOpen && (
               <div id="dropdown">
-                <span onClick={() => navigate(`/userProfile/${userId}`)}>My Profile</span>
+                <span onClick={() => navigate(`/userProfile/${userId}`)}>
+                  My Profile
+                </span>
                 <span onClick={() => navigate("/settings")}>Settings</span>
                 <span onClick={() => navigate("/about")}>About</span>
                 <span onClick={handleLogout}>Logout</span>

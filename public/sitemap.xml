@@ -7,18 +7,10 @@
 <!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
 
-  <url>
-    <loc>https://noteshare1.netlify.app/</loc>
-    <lastmod>2025-06-25</lastmod>
-  </url>
-  <url>
-    <loc>https://noteshare1.netlify.app/about</loc>
-    <lastmod>2025-06-25</lastmod>
-  </url>
-  <url>
-    <loc>https://noteshare1.netlify.app/browse</loc>
-    <lastmod>2025-06-25</lastmod>
-  </url>
+<url>
+  <loc>https://noteshare1.netlify.app/</loc>
+  <lastmod>2025-09-05T11:18:38+00:00</lastmod>
+</url>
 
 
 </urlset>

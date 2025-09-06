@@ -106,7 +106,9 @@ const UserHomePage = () => {
       alert("Note uploaded successfully");
       setShowUploadModal(false);
     } catch (err) {
-      alert("Select preview image");
+      // 💡 Display the error message from the backend
+      const errorMessage = err.response?.data?.error || "Upload failed.";
+      alert(errorMessage);
       console.error(err);
     } finally {
       setUploading(false); // Stop spinner
